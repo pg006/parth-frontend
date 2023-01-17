@@ -16,12 +16,10 @@ const Pagination = (props) => {
       case "Next":
         if (page >= totalPages) return true;
         break;
-
       default:
         break;
     }
   };
-  console.log(totalPages);
   if (totalPages < 2) return;
   return (
     <React.Fragment>
@@ -32,9 +30,12 @@ const Pagination = (props) => {
               <button
                 disabled={disablePages("Previous")}
                 onClick={() => {
-                  onPageClick(page - 1);
+                  page !== 1 && onPageClick(page - 1);
                 }}
-                className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-300 dark:hover:text-white"
+                className={
+                  "px-3 py-2 ml-0 font-medium leading-tight text-gray-500 bg-white border border-gray-300 " +
+                  (page !== 1 ? "cursor-pointer" : "cursor-not-allowed")
+                }
               >
                 Previous
               </button>
@@ -46,7 +47,12 @@ const Pagination = (props) => {
                     onClick={() => {
                       onPageClick(val);
                     }}
-                    className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-300 dark:hover:text-white"
+                    className={
+                      "px-3 py-2 leading-tight font-medium border border-gray-300 " +
+                      (page === val
+                        ? "bg-gray-500 text-white"
+                        : "bg-white text-gray-500")
+                    }
                   >
                     {val.toString()}
                   </button>
@@ -57,9 +63,14 @@ const Pagination = (props) => {
               <button
                 disabled={disablePages("Next")}
                 onClick={() => {
-                  onPageClick(page + 1);
+                  page !== totalPages && onPageClick(page + 1);
                 }}
-                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300  hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-300 dark:hover:text-white"
+                className={
+                  "px-3 py-2 leading-tight font-medium text-gray-500 bg-white border border-gray-300 " +
+                  (page !== totalPages
+                    ? "cursor-pointer"
+                    : "cursor-not-allowed")
+                }
               >
                 Next
               </button>

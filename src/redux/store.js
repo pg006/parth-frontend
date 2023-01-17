@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import landingPageSlice from "../pages/LandingPage/landingPageSlice";
 
 const combineReducer = combineReducers({
-  rocket: landingPageSlice,
+  ship: landingPageSlice,
 });
 
 const store = configureStore({

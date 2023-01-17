@@ -1,1 +1,1 @@
-export const GET_ROCKETS = '/rockets'
+export const GET_SHIPS = '/ships'
